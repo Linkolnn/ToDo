@@ -7,7 +7,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/ToDo-List",
+  base: "/ToDo",
   plugins: [
     vue(),
     vueJsx(),
