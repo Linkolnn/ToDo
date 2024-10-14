@@ -15,9 +15,9 @@ $modals.show('myModal').then(() => {
 
 <template>
   <div class="app">
-    <Modal name="myModal" title="Пример модального компонента">
+    <!-- <Modal name="myModal" title="Пример модального компонента">
         Содержание
-    </Modal>
+    </Modal> -->
   </div>
   <ToDo></ToDo>
 </template>
