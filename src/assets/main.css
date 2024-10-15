@@ -1,8 +1,10 @@
 @import './base.css';
 
 #app {
-  align-items: center;
-  min-height: 80vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   max-width: 1280px;
   margin: 0 auto;
   font-weight: normal;
