@@ -1,15 +1,25 @@
 @import './base.css';
 
 #app {
-  display: grid;
   align-items: center;
-  min-height: 100vh;
+  min-height: 80vh;
   max-width: 1280px;
   margin: 0 auto;
   font-weight: normal;
 }
+#app > * {
+  margin-bottom: 20px;
+}
+
+.main {
+  min-height: 70vh;
+}
 
 /* ---------------------------------------_text_------------------------------------- */
+.header_title {
+  color: var(--text-color-default);
+  font-size: var(--h2);
+}
 
 .todo_title { 
   color: var(--text-color-default);
@@ -36,78 +46,144 @@
   font-size: var(--h3);
 }
 
-/* -------------------------------------_btn_------------------------------------- */
-.btn {
-  /* border: var(--border) solid var(--border-color); */
+/* -------------------------------------_modal_window_------------------------------------- */
+
+.modal_window {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.371);
+  padding: 10px;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.dualog_wrapper {
+  display: flex;
+  max-width: 400px;
+  min-width: 310px;
+  width: 100%;
+  max-height: 265px;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+  padding: 10px;
+  
   border-radius: var(--radius);
-  color: var(--text-color-default);
-  background-color: var(--second-color);
+  background-color: var(--color-background);
+  color: var(--text-color-default); 
   font-size: var(--btn-font-size);
-  padding: 10px 20px;
+  padding: 20px;
+}
+.header_modal {
+  font-size: var(--h3);
+}
+.btn_modal {
+  position: relative;
+  border-radius: var(--radius);
+  color: var(--inp-bg);
+  background: var(--color-background);
+  padding: 5px 20px;
   transition: 0.5s;
+  color: var(--text-color-default);
+  font-size: var(--other-text-size);
 }
 
-.btn_grd:before, .btn_grd:after {
+.btn_modal:before, .btn_modal:after {
   content: '';
   position: absolute;
   border-radius: var(--radius);
-  top: 2px;
-  right: 2px;
-  bottom: 2px;
-  left: 2px;
-  background: linear-gradient(45deg,#A9DCFF, #14A0FF, #9564FA, #FEA501, #FC6F3B, #FD1A5D);
-  background-size: 500%;
+  top: 0px;
+  right: 1px;
+  bottom: 0px;
+  left: 1px;
+  background: linear-gradient(45deg, var(--gradient));
+  background-size: 200%;
   z-index: -1;
-  animation: gradient 2s alternate infinite;
+  animation: bg 10s ease infinite;
 }
 
-.btn:hover { 
+.btn_modal:hover { 
+  color: var(--text-color-default);
+  background-color: rgb(0, 0, 0, 0);
+  transition: 0.5s;
+}
+
+.item_form_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.item_form_content_block {
+  display: flex;
+  flex-direction: column;
+}
+
+.inp_form {
+  position: relative;
+  border-radius: var(--radius);
+  padding: 5px 10px;
+  font-size: var(--inp-font-size);
   color: var(--inp-bg);
   background: var(--color-second-backround);
   transition: 0.5s;
+}
+
+/* -------------------------------------_btn_------------------------------------- */
+
+.create_btn {
+  position: relative;
+  border-radius: var(--radius);
+  color: var(--text-color-default);
+  background-color: rgb(0, 0, 0, 0);
+  font-size: var(--btn-font-size);
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  transition: 0.5s;
+}
+
+.create_btn:before, .create_btn:after {
+  content: '';
+  position: absolute;
+  border-radius: var(--radius);
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background: linear-gradient(45deg, var(--gradient));
+  background-size: 200%;
+  z-index: -1;
+  animation: bg 10s ease infinite;
+}
+
+@keyframes bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;	
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 
 /* ----------------------------------_inp_------------------------------------- */
 .inp {
-  /* border: var(--border) solid var(--border-color); */
-  border-radius: var(--radius);
-  color: var(--text-color-inp-block);
-  padding: 10px;
+  position: relative;
+  width: 100%;
   font-size: var(--inp-font-size);
-  background: var(--second-color);
+  color: var(--text-color-default);
+  background-color: rgb(0, 0, 0, 0);
   transition: 0.5s;
 }
-.inp::placeholder {
-  color: var(--text-color-default);
-}
-.inp:hover {
-  color: var(--inp-bg);
-  background: var(--color-second-backround);
-}
-.inp:focus {
-  color: var(--inp-bg);
-  background: var(--color-second-backround);
-}
-.checkbox_block {
-  display: flex;
-  justify-content: center;
-}
-._checkbox {
-  margin-right:10px;
-}
-
 
 /* --------------------------------------_gradient_-------------------------------------- */
-.shd_grd_r {
-  position: relative;
-}
-
-@property --angle{
-  syntax: "<angle>";
-  initial-value: 0deg;
-  inherits: false;
-}
 
 .shd_grd_r:before, .shd_grd_r:after {
   content: '';
@@ -117,24 +193,16 @@
   right: 0px;
   bottom: 0px;
   left: 0px;
-  background: conic-gradient(from var(--angle), var(--gradient));
-  background-size: 100%;
+  background: linear-gradient(45deg, var(--gradient));
+  background-size: 200%;
   z-index: -1;
-  animation: gradient 3s linear infinite;
+  animation: bg 10s ease infinite;
 }
 
 .shd_grd_r:after {
-  filter: blur(20px);
+  filter: blur(10px);
 }
 
-@keyframes gradient {
-  from {
-    --angle: 0deg;
-  }
-  to {
-    --angle: 360deg;
-  }
-}
 
 /* -----------------------------------_section_-------------------------------- */
 
@@ -150,84 +218,88 @@
 
 .todo_container {
   position: relative;
+  min-height: 70vh;
   display: flex;
-  gap: 20px;
+  gap: 10px;
   flex-direction: column;
+  padding: 10px;
+  border-radius: var(--radius);
+  /* background-color: var(--color-background); */
+}
+
+/* ----------------------------------------_summary_block_--------------------------- */
+.summary_block {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  /* background-color: var(--color-background); */
+  border-radius: var(--radius);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  hyphens: auto;
+  color: var(--text-color-default);
+  font-size: var(--other-text-size);
   padding: 20px;
   border-radius: var(--radius);
   background-color: var(--color-background);
 }
 
+/* ----------------------------------------_filter_block_--------------------------- */
 
-.todo_inp_block {
+.filter_block {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  /* flex-direction: column; */
+  border-radius: var(--radius);
+  padding: 10px 20px;
+  background-color: var(--color-background);
+}
+
+/* ----------------------------------------_todo_list_--------------------------- */
+.todo_list_block {
   width: 100%;
+  min-height: 45vh;
+  padding: 20px;
+  border-radius: var(--radius);
+  background-color: var(--color-background);
+  hyphens: auto;
+  color: var(--text-color-default);
+  font-size: var(--other-text-size);
+}
+
+.todo_list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.inp_block {
+.todo_list_header {
   display: flex;
-  width: 100%;
+  justify-content: space-between;
 }
 
-.todo_inp {
-  border-right: none;
-  border-radius: 20px 0 0 20px;
-  min-width: 190px;
-  width: 100%;
-}
-
-/* .todo_inp_btn_block {
-  display: flex;
-  gap: 20px;
-} */
-
-.todo_inp_btn {
-  border-left: none;
-  padding: 10px 13px;
-  border-radius: 0 20px 20px 0;
-}
-
-.todo_btn {
-  width: 100%;
-  padding: 10px 13px;
-}
-
-.todo_lists {
-  display: flex;
-  min-height: 60vh;
-  padding: 20px;
-  gap: 20px;
-  border-radius: var(--radius);
-  justify-content: space-around;
-  background-color: var(--second-color);
-}
-.todo_block_list {
+.todo_list_body {
   display: flex;
   flex-direction: column;
-  width: 50%;
-  min-width: 200px;
 }
 
-.todo_item {
+.list_body_row {
   display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
 }
-
-.todo_text {
-  width: 70%;
-  vertical-align: middle;
-}
-
-.done_btn {
-  padding: 5px 10px;
-}
-
-.done_btn:hover {
-  color: var(--text-color-default);
-  background-color: var(--done-btn-bg);
+.edit_message_block {
+  display: flex;
+  gap: 10px;
 }
 
 /* -------------------------_media_--------------------------- */
@@ -259,5 +331,15 @@
   .done_btn:hover {
     color: none;
     background-color: none;
+  }
+}
+
+@media screen and (max-width: 610px) {
+  .summary_block {
+    flex-direction: column;
+  }
+  .content {
+    width: 100%;
+    max-width: none;
   }
 }

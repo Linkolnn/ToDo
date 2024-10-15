@@ -1,5 +1,5 @@
-import ToDo from '@/components/ToDo.vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import ToDoProject from '@/components/ToDoProject.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -7,7 +7,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: ToDo
+      component: ToDoProject
     },
   ]
 })

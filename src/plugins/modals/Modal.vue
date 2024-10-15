@@ -16,12 +16,12 @@ const
 
 <template> 
 <div class="vueport_wrapper" v-if="_show">
-    <div class="dualog_wrapper">
-        <header>{{ $props.title }}</header>
+    <div class="dualog_wrapper shd_grd_r">
+        <header class="header_modal">{{ $props.title }}</header>
         <main><slot></slot></main>
         <footer>
-            <button @click="closeModal(true)">Accept</button>
-            <button @click="closeModal(false)">Cancel</button>
+            <button class="btn_modal" @click="closeModal(true)">Выполнить</button>
+            <button class="btn_modal" @click="closeModal(false)">Отмена</button>
         </footer>
     </div>
 </div>
